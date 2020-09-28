@@ -15,17 +15,22 @@ const LoginForm = props => {
         dispatch(thunks.tryLogin());
     }
 
-    return (<form>
+    return (
     <div>
-      <input onChange={updateEmailValue} type="email" placeholder="Email" required />
-    </div>
-    <div>
-      <input onChange={updatePasswordValue} type="password" placeholder="Password" required />
-    </div>
-    <div>
-      <button onClick={tryLogin}>Log in</button>
-    </div>
-  </form>);
+        <form>
+            <div>
+            <input onChange={updateEmailValue} type="email" placeholder="Email" required />
+            </div>
+            <div>
+            <input onChange={updatePasswordValue} type="password" placeholder="Password" required />
+            </div>
+            <div>
+            <button onClick={tryLogin}>Log in</button>
+            </div>
+    </form>
+    <a href='/register/'>Don't have an account? Click here to register</a>
+  </div>
+    )
 }
 
 export default LoginForm;

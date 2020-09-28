@@ -3,7 +3,7 @@ import { BrowserRouter, Switch, Route, NavLink } from 'react-router-dom';
 
 import UserList from './components/UsersList';
 import LoginForm from './components/LoginForm';
-
+import RegistrationForm from './components/RegistrationForm';
 
 function App() {
 
@@ -14,6 +14,7 @@ function App() {
                 <li><NavLink to="/">Home</NavLink></li>
                 <li><NavLink to="/users">Users</NavLink></li>
                 <li><NavLink to="/login">Log in</NavLink></li>
+                <li><NavLink to="/register">Register an account</NavLink></li>
             </ul>
         </nav>
         <Switch>
@@ -23,6 +24,10 @@ function App() {
 
             <Route path="/login">
                 <LoginForm />
+            </Route>
+
+            <Route path="/register">
+                <RegistrationForm />
             </Route>
 
             <Route path="/">
