@@ -7,3 +7,10 @@ h1 {
     font-weight: bold;
     text-shadow: 2px;
 }
+
+nav {
+    display: flex;
+    flex-direction: row;
+    align-items: space-between;
+    border: 1px solid grey;
+}
