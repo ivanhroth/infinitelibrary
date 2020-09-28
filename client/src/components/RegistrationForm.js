@@ -37,13 +37,15 @@ const RegistrationForm = props => {
         }
     }
     return (
+        <div>
             <form onSubmit={registerUser}>
                 <h2>Register</h2>
-                <input type="text" name="username" placeholder="Enter Username" value={username} onChange={updateUsername} />
-                <input type="email" name="email" placeholder="Enter Email" value={email} onChange={updateEmail} />
-                <input type="password" name="password" placeholder="Enter Password" value={password} onChange={updatePassword} />
-                <button type='submit'>Submit</button>
+                <div><input type="text" name="username" placeholder="Enter Username" value={username} onChange={updateUsername} /></div>
+                <div><input type="email" name="email" placeholder="Enter Email" value={email} onChange={updateEmail} /></div>
+                <div><input type="password" name="password" placeholder="Enter Password" value={password} onChange={updatePassword} /></div>
+                <div><button type='submit'>Submit</button></div>
             </form>
+        </div>
         );
 }
 
