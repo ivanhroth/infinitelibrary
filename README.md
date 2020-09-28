@@ -88,3 +88,6 @@ As a registered user, I want to view the page for an individual book so I can le
 
 * What information will be visible on an individual book's page?
 The title, author, publication year, a cover image, and a brief synopsis, as well as recent user activity related to that book.
+
+* What route will be used to view an individual book?
+A GET request to /books/:id will be used.
