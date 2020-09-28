@@ -9,6 +9,7 @@ function App() {
 
   return (
     <BrowserRouter>
+        <div class="logotext">InfiniteLibrary</div>
         <nav>
             <ul>
                 <li><NavLink to="/">Home</NavLink></li>

@@ -27,3 +27,11 @@ form {
     display: flex;
     flex-direction: column;
 }
+
+.logotext {
+    font-size: 50px;
+    text-align: center;
+    color: darkblue;
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+    margin: 10px;
+}

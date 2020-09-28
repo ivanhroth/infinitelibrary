@@ -17,6 +17,7 @@ const LoginForm = props => {
 
     return (
     <div>
+        <h2>Log in</h2>
         <form>
             <div>
             <input onChange={updateEmailValue} type="email" placeholder="Email" required />
