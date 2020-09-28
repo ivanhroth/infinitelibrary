@@ -5,7 +5,14 @@ const password = db.password;
 const database = db.database;
 const host = db.host;
 
+const jwtConfig = {
+  secret: 'WP()*EJRP)W(*JERP:)(WJR)(J@P:#)(RJP:@#)(RJ@#(RJ',
+  expiresIn: 604800,
+};
+
+
 module.exports = {
+  jwtConfig,
   development: {
     username,
     password,
