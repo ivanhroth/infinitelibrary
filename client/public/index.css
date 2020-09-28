@@ -9,8 +9,16 @@ h1 {
 }
 
 nav {
+    margin: 10px auto;
+}
+
+nav ul {
     display: flex;
     flex-direction: row;
     align-items: space-between;
     border: 1px solid grey;
+}
+
+nav ul li {
+    padding: 5px;
 }
