@@ -5,6 +5,7 @@ import UserList from './components/UsersList';
 import LoginForm from './components/LoginForm';
 import RegistrationForm from './components/RegistrationForm';
 import Homepage from './components/Homepage';
+import AddBookForm from './components/AddBookForm';
 
 import { thunks } from './store/auth';
 import { useSelector, useDispatch } from 'react-redux';
@@ -17,7 +18,7 @@ const PrivateRoute = ({ component: Component, ...rest }) => (
     )} />
   )
 
-const App = (props) => {
+const App = () => {
 
     const dispatch = useDispatch();
 
@@ -30,7 +31,7 @@ const App = (props) => {
     <nav>
         <ul>
             {needLogin ? <li></li> : <li><NavLink to="/">Home</NavLink></li>}
-            {needLogin ? <li></li> : <li><NavLink to="/users">Users</NavLink></li>}
+            {needLogin ? <li></li> : <li><NavLink to="/books/add">Add a book</NavLink></li>}
             {needLogin ? <li><NavLink to="/login">Log in</NavLink></li> : <li><button type="submit" onClick={logOut}>Log out</button></li>}
             {needLogin ? <li><NavLink to="/register">Register an account</NavLink></li> : <li></li>}
         </ul>
@@ -46,6 +47,10 @@ const App = (props) => {
 
         <Route path="/register">
             <RegistrationForm />
+        </Route>
+
+        <Route path="/books/add">
+            <AddBookForm />
         </Route>
 
         <PrivateRoute path="/"
