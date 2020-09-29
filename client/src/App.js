@@ -6,6 +6,7 @@ import LoginForm from './components/LoginForm';
 import RegistrationForm from './components/RegistrationForm';
 import Homepage from './components/Homepage';
 import AddBookForm from './components/AddBookForm';
+import ViewBook from './components/ViewBook';
 
 import { thunks } from './store/auth';
 import { useSelector, useDispatch } from 'react-redux';
@@ -49,9 +50,14 @@ const App = () => {
             <RegistrationForm />
         </Route>
 
-        <Route path="/books/add">
+        <PrivateRoute path="/books/add">
             <AddBookForm />
-        </Route>
+        </PrivateRoute>
+
+        <PrivateRoute path="/books/:id"
+                      exact={true}
+                      needLogin={needLogin}
+                      component={ViewBook}/>
 
         <PrivateRoute path="/"
                         exact={true}
