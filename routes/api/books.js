@@ -4,4 +4,7 @@ const { Book } = require('../../db/models');
 
 const router = express.Router();
 
-router.get('/:id')
+router.get('/:id', handler(async (req, res) => {
+    const book = await Book.findByPk(req.params.match.id);
+    res.json(book);
+}))
