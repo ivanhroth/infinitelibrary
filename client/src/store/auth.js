@@ -1,15 +1,20 @@
 const UPDATE_EMAIL_VALUE = 'infiniteLibrary/auth/UPDATE_EMAIL_VALUE';
 const UPDATE_PASSWORD_VALUE = 'infiniteLibrary/auth/UPDATE_PASSWORD_VALUE';
 const UPDATE_TOKEN_VALUE = 'infiniteLibrary/auth/UPDATE_TOKEN_VALUE';
+const REMOVE_USER = 'infiniteLibrary/auth/REMOVE_USER';
+
+export const INFINITE_LIBRARY_AUTH_TOKEN = 'INFINITE_LIBRARY_AUTH_TOKEN';
 
 const updateEmailValue = value => ({ type: UPDATE_EMAIL_VALUE, value });
 const updatePasswordValue = value => ({ type: UPDATE_PASSWORD_VALUE, value });
 const updateTokenValue = value => ({ type: UPDATE_TOKEN_VALUE, value });
+const removeUser = () => ({ type: REMOVE_USER });
 
 export const actions = {
   updateEmailValue,
   updatePasswordValue,
   updateTokenValue,
+  removeUser
 };
 
 const tryLogin = () => {
@@ -24,7 +29,7 @@ const tryLogin = () => {
       if (response.status >= 200 && response.status < 400) {
         const data = await response.json();
         dispatch(updateTokenValue(data.token));
-        window.localStorage.setItem('INFINITE_LIBRARY_AUTH_TOKEN', data.token);
+        window.localStorage.setItem(INFINITE_LIBRARY_AUTH_TOKEN, data.token);
       } else {
         console.error('Bad response');
       }
@@ -34,8 +39,16 @@ const tryLogin = () => {
   };
 };
 
+const logOut = () => {
+  return (dispatch) => {
+    window.localStorage.removeItem(INFINITE_LIBRARY_AUTH_TOKEN);
+    dispatch(removeUser);
+  }
+}
+
 export const thunks = {
   tryLogin,
+  logOut
 };
 
 const token = window.localStorage.getItem('INFINITE_LIBRARY_AUTH_TOKEN');
@@ -65,6 +78,14 @@ function reducer(state = initialState, action) {
         ...state,
         token: action.value,
       };
+    }
+    case REMOVE_USER: {
+      return {
+        ...state,
+        email: '',
+        password: '',
+        token: false
+      }
     }
     default: {
       return state;

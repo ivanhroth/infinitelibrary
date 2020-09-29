@@ -6,8 +6,8 @@ import { actions, thunks } from '../store/auth';
 const LoginForm = props => {
     const dispatch = useDispatch();
 
-    const email = useSelector(state => state.auth.email);
-    const password = useSelector(state => state.auth.password);
+    //const email = useSelector(state => state.auth.email);
+    //const password = useSelector(state => state.auth.password);
     const token = useSelector(state => state.auth.token);
 
     const updateEmailValue = event => dispatch(actions.updateEmailValue(event.target.value));

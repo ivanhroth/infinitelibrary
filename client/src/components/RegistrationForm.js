@@ -1,9 +1,12 @@
-import React, { useState } from 'react';
+import React, { useState, useSelector } from 'react';
+import { Redirect } from 'react-router';
 
 const RegistrationForm = props => {
     const [username, setUsername] = useState('');
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
+    //const token = useSelector(state => state.auth.token);
+    const token = false;
 
     const updateUsername = e => {
         setUsername(e.target.value);
@@ -36,6 +39,7 @@ const RegistrationForm = props => {
             console.log(err);
         }
     }
+    if (token) return <Redirect to="/"/>
     return (
         <div>
             <form onSubmit={registerUser}>
