@@ -1,4 +1,5 @@
 import React from 'react';
+import { Redirect } from 'react-router';
 import { useSelector, useDispatch } from 'react-redux';
 import { actions, thunks } from '../store/auth';
 
@@ -7,6 +8,7 @@ const LoginForm = props => {
 
     const email = useSelector(state => state.auth.email);
     const password = useSelector(state => state.auth.password);
+    const token = useSelector(state => state.auth.token);
 
     const updateEmailValue = event => dispatch(actions.updateEmailValue(event.target.value));
     const updatePasswordValue = event => dispatch(actions.updatePasswordValue(event.target.value));
@@ -14,6 +16,8 @@ const LoginForm = props => {
         event.preventDefault();
         dispatch(thunks.tryLogin());
     }
+
+    if (token) return <Redirect to="/"/>
 
     return (
     <div>
