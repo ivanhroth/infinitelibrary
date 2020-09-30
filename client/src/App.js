@@ -50,9 +50,10 @@ const App = () => {
             <RegistrationForm />
         </Route>
 
-        <PrivateRoute path="/books/add">
-            <AddBookForm />
-        </PrivateRoute>
+        <PrivateRoute path="/books/add"
+                      exact={true}
+                      needLogin={needLogin}
+                      component={AddBookForm} />
 
         <PrivateRoute path="/books/:id"
                       exact={true}

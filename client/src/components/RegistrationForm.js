@@ -41,7 +41,7 @@ const RegistrationForm = props => {
     }
     if (token) return <Redirect to="/"/>
     return (
-        <div>
+        <div className="frame">
             <form onSubmit={registerUser}>
                 <h2>Register</h2>
                 <div><input type="text" name="username" placeholder="Enter Username" value={username} onChange={updateUsername} /></div>

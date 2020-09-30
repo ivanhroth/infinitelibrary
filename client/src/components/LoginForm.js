@@ -20,7 +20,7 @@ const LoginForm = props => {
     if (token) return <Redirect to="/"/>
 
     return (
-    <div>
+    <div className="frame">
         <h2>Log in</h2>
         <form>
             <div>
