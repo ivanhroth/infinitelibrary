@@ -57,8 +57,9 @@ const App = () => {
 
         <PrivateRoute path="/books/:id"
                       exact={true}
-                      needLogin={needLogin}
-                      component={ViewBook}/>
+                      needLogin={needLogin}>
+                          <ViewBook />
+        </PrivateRoute>
 
         <PrivateRoute path="/"
                         exact={true}

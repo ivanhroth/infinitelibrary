@@ -50,4 +50,9 @@ button {
     background-color: white;
     cursor: pointer;
     font-family: inherit;
+    margin-right: 5px;
+}
+
+#registration-link {
+    font-size: 75%;
 }

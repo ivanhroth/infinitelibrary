@@ -8,7 +8,6 @@ const router = express.Router();
 
 router.get('/:id(\\d+)', handler(async (req, res) => {
     const book = await Book.findByPk(req.params.id);
-    console.log(book);
     res.json(book);
 }));
 

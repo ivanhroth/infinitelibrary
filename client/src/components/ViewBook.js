@@ -6,12 +6,11 @@ const ViewBook = props => {
     const dispatch = useDispatch();
     const currentBookId = Number.parseInt(props.match.params.id);
     const currentBook = useSelector(state => state.books.currentBook);
-    console.log(currentBook.id, currentBookId);
-    if(currentBook.id !== currentBookId) dispatch(thunks.retrieveBook(currentBookId));
+    // console.log(currentBook.id, currentBookId);
+    if(!currentBook || currentBook.id !== currentBookId) dispatch(thunks.retrieveBook(currentBookId));
 
     if (!currentBook) return <h1>Book not found</h1>;
     else {
-        console.log(currentBook);
         return (
         <div>
             <h1>{currentBook.title}</h1>

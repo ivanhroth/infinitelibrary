@@ -5,7 +5,6 @@ const setCurrentBook = book => ({ type: SET_CURRENT_BOOK, book })
 
 const retrieveBook = id => {
     return async dispatch => {
-        console.log(`ID: ${id}`);
         const res = await fetch(`/api/books/${id}`);
         const book = await res.json();
         dispatch(setCurrentBook(book));

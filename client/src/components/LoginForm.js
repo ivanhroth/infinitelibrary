@@ -31,9 +31,9 @@ const LoginForm = props => {
             </div>
             <div>
             <button onClick={tryLogin}>Log in</button>
+            <a href='/register/' id="registration-link">Don't have an account? Click here to register</a>
             </div>
     </form>
-    <a href='/register/'>Don't have an account? Click here to register</a>
   </div>
     )
 }
