@@ -16,8 +16,9 @@ const ViewBook = props => {
         <div>
             <h1>{currentBook.title}</h1>
             <h2>by {currentBook.authorFirstName} {currentBook.authorLastName}</h2>
+            <h2>published {currentBook.publicationYear}</h2>
         </div>
-    )
+        )
     }
 }
 
