@@ -6,11 +6,13 @@ import {
   } from 'redux';
   import thunk from 'redux-thunk';
   import auth from "./auth";
+  import books from './books';
 
   const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 
   const reducer = combineReducers({
     auth,
+    books,
   });
 
   const storeEnhancer = composeEnhancers(applyMiddleware(thunk));
