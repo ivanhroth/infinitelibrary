@@ -33,7 +33,7 @@ const App = () => {
         <ul>
             {needLogin ? <li></li> : <li><NavLink to="/">Home</NavLink></li>}
             {needLogin ? <li></li> : <li><NavLink to="/books/add">Add a book</NavLink></li>}
-            {needLogin ? <li><NavLink to="/login">Log in</NavLink></li> : <li><button type="submit" onClick={logOut}>Log out</button></li>}
+            {needLogin ? <li><NavLink to="/login">Log in</NavLink></li> : <li><form><button type="submit" onClick={logOut}>Log out</button></form></li>}
             {needLogin ? <li><NavLink to="/register">Register an account</NavLink></li> : <li></li>}
         </ul>
     </nav>
