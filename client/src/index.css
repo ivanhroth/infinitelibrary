@@ -56,3 +56,7 @@ button {
 #registration-link {
     font-size: 75%;
 }
+
+body > div {
+    margin: 0 25%;
+}

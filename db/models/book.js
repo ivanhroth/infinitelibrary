@@ -7,7 +7,7 @@ module.exports = (sequelize, DataTypes) => {
     publicationYear: DataTypes.INTEGER
   }, {});
   Book.associate = function(models) {
-    Book.hasMany(models.Review, { foreignKey: bookId });
+    Book.hasMany(models.Review, { foreignKey: "bookId" });
   };
   return Book;
 };
