@@ -17,7 +17,8 @@ router.get('/:id(\\d+)/reviews', handler(async (req, res) => {
 router.post('/:id(\\d+)/reviews', handler(async (req, res) => {
     const review = await Review.create(req.body);
     // error handling?
-}));
+
+}))
 
 router.get('/:id(\\d+)', handler(async (req, res) => {
     const book = await Book.findByPk(req.params.id);

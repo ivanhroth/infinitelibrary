@@ -1,4 +1,5 @@
 import React from 'react';
+import { thunks } from '../store/books';
 
 const postReview = e => null;
 
