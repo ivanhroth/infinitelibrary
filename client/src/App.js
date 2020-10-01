@@ -28,7 +28,7 @@ const App = () => {
 
     return (
     <BrowserRouter>
-    <div className="logotext">InfiniteLibrary</div>
+    <div id="logotext" ><NavLink to="/">InfiniteLibrary</NavLink></div>
     <nav>
         <ul>
             {needLogin ? <li></li> : <li><NavLink to="/">Home</NavLink></li>}

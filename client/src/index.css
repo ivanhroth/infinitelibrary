@@ -28,12 +28,16 @@ form {
     flex-direction: column;
 }
 
-.logotext {
-    font-size: 50px;
+#logotext {
     text-align: center;
+    margin: 10px;
+}
+
+#logotext * {
+    font-size: 50px;
     color: darkblue;
     font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
-    margin: 10px;
+    text-decoration: none;
 }
 
 body {
@@ -45,12 +49,20 @@ a {
     color: dimgrey;
 }
 
+a:hover {
+    color: black;
+}
+
 button {
     border: none;
     background-color: white;
     cursor: pointer;
     font-family: inherit;
     margin-right: 5px;
+}
+
+button:hover {
+    box-shadow: 1px 1px 1px 1px black;
 }
 
 #registration-link {
