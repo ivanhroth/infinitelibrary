@@ -1,6 +1,8 @@
 import React from 'react';
 import { BrowserRouter, Switch, Route, NavLink, Redirect } from 'react-router-dom';
 
+import { Nav, Button } from 'react-bootstrap';
+
 import UserList from './components/UsersList';
 import LoginForm from './components/LoginForm';
 import RegistrationForm from './components/RegistrationForm';
@@ -29,14 +31,12 @@ const App = () => {
     return (
     <BrowserRouter>
     <div id="logotext" ><NavLink to="/">InfiniteLibrary</NavLink></div>
-    <nav>
-        <ul>
-            {needLogin ? <li></li> : <li><NavLink to="/">Home</NavLink></li>}
-            {needLogin ? <li></li> : <li><NavLink to="/books/add">Add a book</NavLink></li>}
-            {needLogin ? <li><NavLink to="/login">Log in</NavLink></li> : <li><form><button type="submit" onClick={logOut}>Log out</button></form></li>}
-            {needLogin ? <li><NavLink to="/register">Register an account</NavLink></li> : <li></li>}
-        </ul>
-    </nav>
+    <Nav>
+        {needLogin ? <></> : <Nav.Item as="li"><NavLink to="/">Home</NavLink></Nav.Item>}
+        {needLogin ? <></> : <Nav.Item as="li"><NavLink to="/books/add">Add a book</NavLink></Nav.Item>}
+        {needLogin ? <Nav.Item as="li"><NavLink to="/login">Log in</NavLink></Nav.Item> : <Nav.Item as="li"><form><Button type="submit" onClick={logOut}>Log out</Button></form></Nav.Item>}
+        {needLogin ? <Nav.Item as="li"><NavLink to="/register">Register an account</NavLink></Nav.Item> : <></>}
+    </Nav>
     <Switch>
         <Route path="/users">
             <UserList />
