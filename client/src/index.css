@@ -1,3 +1,9 @@
 body {
-    background-color: tan;
+    background-color: rgb(250, 235, 215);
 }
+
+/* .navbar {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+} */
