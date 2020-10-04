@@ -1,7 +1,7 @@
 import React from 'react';
 import { BrowserRouter, Switch, Route, NavLink, Redirect } from 'react-router-dom';
 
-import { Nav, Button } from 'react-bootstrap';
+import { Nav, Button, Navbar } from 'react-bootstrap';
 
 import UserList from './components/UsersList';
 import LoginForm from './components/LoginForm';
@@ -30,13 +30,17 @@ const App = () => {
 
     return (
     <BrowserRouter>
-    <div id="logotext" ><NavLink to="/">InfiniteLibrary</NavLink></div>
-    <Nav>
+    <Navbar bg="light" expand="lg">
+        <Navbar.Brand href="/">InfiniteLibrary</Navbar.Brand>
+        <Navbar.Collapse>
+        <Nav className="navbar">
         {needLogin ? <></> : <Nav.Item as="li"><NavLink to="/">Home</NavLink></Nav.Item>}
         {needLogin ? <></> : <Nav.Item as="li"><NavLink to="/books/add">Add a book</NavLink></Nav.Item>}
         {needLogin ? <Nav.Item as="li"><NavLink to="/login">Log in</NavLink></Nav.Item> : <Nav.Item as="li"><form><Button type="submit" onClick={logOut}>Log out</Button></form></Nav.Item>}
         {needLogin ? <Nav.Item as="li"><NavLink to="/register">Register an account</NavLink></Nav.Item> : <></>}
-    </Nav>
+        </Nav>
+        </Navbar.Collapse>
+    </Navbar>
     <Switch>
         <Route path="/users">
             <UserList />

@@ -2,6 +2,7 @@ import React from 'react';
 import { Redirect } from 'react-router';
 import { useSelector, useDispatch } from 'react-redux';
 import { actions, thunks } from '../store/auth';
+import { Button } from 'react-bootstrap';
 
 const LoginForm = props => {
     const dispatch = useDispatch();
@@ -30,7 +31,7 @@ const LoginForm = props => {
             <input onChange={updatePasswordValue} type="password" placeholder="Password" required />
             </div>
             <div>
-            <button onClick={tryLogin}>Log in</button>
+            <Button onClick={tryLogin}>Log in</Button>
             <a href='/register/' id="registration-link">Don't have an account? Click here to register</a>
             </div>
     </form>

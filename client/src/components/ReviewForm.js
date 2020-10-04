@@ -1,6 +1,8 @@
 import React from 'react';
 import { thunks } from '../store/books';
 
+import { Button } from 'react-bootstrap';
+
 const postReview = e => null;
 
 const ReviewForm = props => {
@@ -8,7 +10,7 @@ const ReviewForm = props => {
         <div>
             <form onSubmit={postReview}>
                 <div><textarea></textarea></div>
-                <div><button type="submit">Post a review</button></div>
+                <div><Button type="submit">Post a review</Button></div>
             </form>
         </div>
     )

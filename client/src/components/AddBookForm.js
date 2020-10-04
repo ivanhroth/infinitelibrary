@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 
+import { Button } from 'react-bootstrap';
+
 const AddBookForm = () => {
 
     const [title, setTitle] = useState('');
@@ -11,16 +13,17 @@ const AddBookForm = () => {
     const dispatch = useDispatch();
 
     const internalFind = async book => {
-        const resExactFind = await fetch('/api/books/find', {
-            method: 'POST',
-            headers: {'Content-Type': 'application/json'},
-            body: JSON.stringify(book)
-        });
-        const exactFindResult = await resExactFind.json();
-        if(exactFindResult) return exactFindResult;
-        else {
-            return false;
-        }
+        // const resExactFind = await fetch('/api/books/find', {
+        //     method: 'POST',
+        //     headers: {'Content-Type': 'application/json'},
+        //     body: JSON.stringify(book)
+        // });
+        // const exactFindResult = await resExactFind.json();
+        // if(exactFindResult) return exactFindResult;
+        // else {
+        //     return false;
+        // }
+        return false;
     }
 
     const postBook = async book => {
@@ -30,20 +33,21 @@ const AddBookForm = () => {
             body: JSON.stringify(book)
         });
         if (!res.ok){
-            return false;
+            console.log("res: ", res);
+            debugger
         } else {
             return await res.json();
         }
     }
 
-    const submitBook = () => {
+    const submitBook = e => {
+        e.preventDefault();
         const newBook = {title, authorFirstName, authorLastName, publicationYear};
         const findResults = internalFind(newBook);
         if(findResults){
 
-        } else {
-            postBook(newBook);
         }
+        postBook(newBook);
     }
 
     return (
@@ -52,7 +56,7 @@ const AddBookForm = () => {
                 <div>Title: <input placeholder="Enter a title" onChange={e => setTitle(e.target.value)} /></div>
                 <div>Author: <input placeholder="First name" onChange={e => setAuthorFirstName(e.target.value)} /> <input placeholder="Last name" onChange={e => setAuthorLastName(e.target.value)} /></div>
                 <div>Publication year: <input placeholder="Enter a year" onChange={e => setPublicationYear(e.target.value)} /></div>
-                <div><button type="submit" onClick={submitBook}>Add book</button></div>
+                <div><Button type="submit" onClick={submitBook}>Add book</Button></div>
             </form>
         </div>
     )

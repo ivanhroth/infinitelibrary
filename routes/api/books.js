@@ -6,6 +6,10 @@ const bookAttributes = ['title', 'authorFirstName', 'authorLastName', 'publicati
 
 const router = express.Router();
 
+router.post('/', handler(async (req, res) => {
+    return await Book.create(req.body);
+}))
+
 router.get('/:id(\\d+)/reviews', handler(async (req, res) => {
     return await Review.findAll({
         where: {
@@ -15,9 +19,7 @@ router.get('/:id(\\d+)/reviews', handler(async (req, res) => {
 }));
 
 router.post('/:id(\\d+)/reviews', handler(async (req, res) => {
-    const review = await Review.create(req.body);
-    // error handling?
-
+    return await Review.create(req.body);
 }))
 
 router.get('/:id(\\d+)', handler(async (req, res) => {
