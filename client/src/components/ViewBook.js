@@ -29,7 +29,7 @@ const ViewBook = props => {
                 {token ? <ReviewForm currentUserId={currentUserId} bookId={currentBookId} /> : <NavLink to="/users/login">Please log in to leave a review</NavLink>}
                 <div>
                     {currentReviews.map(review => (
-                        <div>
+                        <div key={review.id}>
                             <h3>review by {review.userId}</h3>
                             <p>{review.content}</p>
                         </div>
