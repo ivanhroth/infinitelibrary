@@ -4,6 +4,7 @@ import { useDispatch } from 'react-redux';
 import { Button, Container, Form } from 'react-bootstrap';
 
 import { actions, thunks } from '../store/books';
+import { Redirect } from 'react-router-dom';
 
 const AddBookForm = () => {
 
@@ -11,6 +12,7 @@ const AddBookForm = () => {
     const [authorFirstName, setAuthorFirstName] = useState('');
     const [authorLastName, setAuthorLastName] = useState('');
     const [publicationYear, setPublicationYear] = useState('');
+    const [submitted, setSubmitted] = useState(false);
 
     const dispatch = useDispatch();
 
@@ -51,11 +53,11 @@ const AddBookForm = () => {
         if(findResults){
 
         }
-        postBook(newBook);
-
+        dispatch(postBook(newBook));
+        setSubmitted(true);
     }
 
-    return (
+    if (!submitted) return (
         <Container>
             <Form>
                 <div>Title: <input placeholder="Enter a title" onChange={e => setTitle(e.target.value)} /></div>
@@ -65,6 +67,7 @@ const AddBookForm = () => {
             </Form>
         </Container>
     )
+    else return <Redirect to="/" />
 }
 
 export default AddBookForm;
