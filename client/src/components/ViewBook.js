@@ -2,7 +2,7 @@ import React, { NavLink } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { thunks } from '../store/books';
 import ReviewForm from './ReviewForm';
-import { Container } from 'react-bootstrap';
+import { Container, Card } from 'react-bootstrap';
 
 const ViewBook = props => {
     const dispatch = useDispatch();
@@ -29,10 +29,12 @@ const ViewBook = props => {
                 {token ? <ReviewForm currentUserId={currentUserId} bookId={currentBookId} /> : <NavLink to="/users/login">Please log in to leave a review</NavLink>}
                 <div>
                     {currentReviews.map(review => (
-                        <div key={review.id}>
-                            <h3>review by {review.userId}</h3>
-                            <p>{review.content}</p>
-                        </div>
+                        <Card key={review.id}>
+                            <Card.Body>
+                            <Card.Title>Review by <b>{review.User.username}</b> at {review.createdAt}</Card.Title>
+                            <Card.Text>{review.content}</Card.Text>
+                            </Card.Body>
+                        </Card>
                     ))}
                 </div>
             </Container>

@@ -1,6 +1,6 @@
 const express = require('express');
 const handler = require('express-async-handler');
-const { Book, Review } = require('../../db/models');
+const { Book, Review, User } = require('../../db/models');
 
 const bookAttributes = ['title', 'authorFirstName', 'authorLastName', 'publicationYear']
 
@@ -12,6 +12,11 @@ router.post('/', handler(async (req, res) => {
 
 router.get('/:id(\\d+)/reviews', handler(async (req, res) => {
     const reviews = await Review.findAll({
+        include: [
+            {
+                model: User
+            }
+        ],
         where: {
             bookId: req.params.id
         }
