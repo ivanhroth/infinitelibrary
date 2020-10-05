@@ -1,7 +1,35 @@
 import React from 'react';
+import {Container} from 'react-bootstrap';
+import { useDispatch, useSelector } from 'react-redux';
+import {NavLink} from 'react-router-dom';
+import { thunks } from '../store/books';
 
 const Homepage = () => {
-   return <h1>Home page</h1>
+
+   const recentBooks = useSelector(state => state.books.recentBooks);
+
+   const dispatch = useDispatch();
+
+   if (recentBooks.length === 0) dispatch(thunks.retrieveRecentBooks());
+
+   const recentBooksComponent = recentBooks.map(book => (
+      <li>
+      <NavLink to={`/api/books/${book.id}`}>
+         <b>{book.title}</b> by {book.authorLastName}, {book.authorFirstName} ({book.publicationYear})
+      </NavLink>
+      </li>
+   ))
+
+   return (
+      <Container>
+         <h2>Recently added books:</h2>
+         <div className="recent-books">
+            <ul>
+            {recentBooksComponent}
+            </ul>
+         </div>
+      </Container>
+   )
 }
 
 export default Homepage;

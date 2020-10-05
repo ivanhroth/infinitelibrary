@@ -2,7 +2,7 @@ import React from 'react';
 import { Redirect } from 'react-router';
 import { useSelector, useDispatch } from 'react-redux';
 import { actions, thunks } from '../store/auth';
-import { Button } from 'react-bootstrap';
+import { Button, Container, Form } from 'react-bootstrap';
 
 const LoginForm = props => {
     const dispatch = useDispatch();
@@ -21,9 +21,9 @@ const LoginForm = props => {
     if (token) return <Redirect to="/"/>
 
     return (
-    <div className="frame">
+    <Container>
         <h2>Log in</h2>
-        <form>
+        <Form>
             <div>
             <input onChange={updateEmailValue} type="email" placeholder="Email" required />
             </div>
@@ -34,8 +34,8 @@ const LoginForm = props => {
             <Button onClick={tryLogin}>Log in</Button>
             <a href='/register/' id="registration-link">Don't have an account? Click here to register</a>
             </div>
-    </form>
-  </div>
+        </Form>
+  </Container>
     )
 }
 

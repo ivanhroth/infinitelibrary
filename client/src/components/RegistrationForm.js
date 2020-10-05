@@ -1,5 +1,6 @@
 import React, { useState, useSelector } from 'react';
 import { Redirect } from 'react-router';
+import { Container, Button, Form } from 'react-bootstrap';
 
 const RegistrationForm = props => {
     const [username, setUsername] = useState('');
@@ -41,15 +42,15 @@ const RegistrationForm = props => {
     }
     if (token) return <Redirect to="/"/>
     return (
-        <div className="frame">
-            <form onSubmit={registerUser}>
+        <Container>
+            <Form onSubmit={registerUser}>
                 <h2>Register</h2>
                 <div><input type="text" name="username" placeholder="Enter Username" value={username} onChange={updateUsername} /></div>
                 <div><input type="email" name="email" placeholder="Enter Email" value={email} onChange={updateEmail} /></div>
                 <div><input type="password" name="password" placeholder="Enter Password" value={password} onChange={updatePassword} /></div>
-                <div><button type='submit'>Submit</button></div>
-            </form>
-        </div>
+                <div><Button type='submit'>Submit</Button></div>
+            </Form>
+        </Container>
         );
 }
 

@@ -31,6 +31,14 @@ router.post('/find', handler(async (req, res) => {
     return await Book.findAll({
         where: JSON.parse(req.body)
     });
+}));
+
+router.get('/recent', handler(async (req, res) => {
+    const recentBooks = await Book.findAll({
+        limit: 5,
+        order: [['createdAt', 'DESC']]
+    });
+    res.json(recentBooks);
 }))
 
 module.exports = router;

@@ -1,7 +1,9 @@
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 
-import { Button } from 'react-bootstrap';
+import { Button, Container, Form } from 'react-bootstrap';
+
+import { actions, thunks } from '../store/books';
 
 const AddBookForm = () => {
 
@@ -26,7 +28,9 @@ const AddBookForm = () => {
         return false;
     }
 
-    const postBook = async book => {
+    const postBook = thunks.postBook;
+
+    /* const postBook = async book => {
         const res = await fetch('/api/books', {
             method: 'POST',
             headers: {'Content-Type': 'application/json'},
@@ -38,7 +42,7 @@ const AddBookForm = () => {
         } else {
             return await res.json();
         }
-    }
+    } */
 
     const submitBook = e => {
         e.preventDefault();
@@ -48,17 +52,18 @@ const AddBookForm = () => {
 
         }
         postBook(newBook);
+
     }
 
     return (
-        <div>
-            <form>
+        <Container>
+            <Form>
                 <div>Title: <input placeholder="Enter a title" onChange={e => setTitle(e.target.value)} /></div>
                 <div>Author: <input placeholder="First name" onChange={e => setAuthorFirstName(e.target.value)} /> <input placeholder="Last name" onChange={e => setAuthorLastName(e.target.value)} /></div>
                 <div>Publication year: <input placeholder="Enter a year" onChange={e => setPublicationYear(e.target.value)} /></div>
                 <div><Button type="submit" onClick={submitBook}>Add book</Button></div>
-            </form>
-        </div>
+            </Form>
+        </Container>
     )
 }
 
