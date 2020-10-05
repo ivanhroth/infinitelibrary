@@ -9,9 +9,16 @@ const ReviewForm = props => {
     const dispatch = useDispatch();
 
     const [reviewContent, setReviewContent] = useState("");
+    const token = useSelector(state => state.auth.token);
+    const payload = token.split('.')[1];
+    const decodedPayload = atob(payload);
+    const payloadObj = JSON.parse(decodedPayload);
+    const currentEmail = payloadObj.data.email;
 
-    const postReview = () => {
-        dispatch(thunks.postReview(reviewContent, props.currentEmail, props.bookId)) // two more parameters: userId and bookId
+    const postReview = e => {
+        e.preventDefault();
+        console.log(`posting review - content: "${reviewContent}", email: ${currentEmail}, book ID: ${props.bookId}`);
+        dispatch(thunks.postReview(reviewContent, currentEmail, props.bookId)) // two more parameters: userId and bookId
     }
 
     const updateReviewContent = e => {

@@ -13,14 +13,15 @@ const Homepage = () => {
    if (recentBooks.length === 0) dispatch(thunks.retrieveRecentBooks());
 
    const recentBooksComponent = recentBooks.map(book => (
-      <li>
-      <NavLink to={`/api/books/${book.id}`}>
-         <b>{book.title}</b> by {book.authorLastName}, {book.authorFirstName} ({book.publicationYear})
+      <li key={book.id}>
+      <NavLink to={`/books/${book.id}`}>
+         <b><i>{book.title}</i></b> by {book.authorLastName}, {book.authorFirstName} ({book.publicationYear})
       </NavLink>
       </li>
    ))
 
    return (
+      <>
       <Container>
          <h2>Recently added books:</h2>
          <div className="recent-books">
@@ -29,6 +30,7 @@ const Homepage = () => {
             </ul>
          </div>
       </Container>
+      </>
    )
 }
 

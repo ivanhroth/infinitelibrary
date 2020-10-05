@@ -11,15 +11,17 @@ router.post('/', handler(async (req, res) => {
 }))
 
 router.get('/:id(\\d+)/reviews', handler(async (req, res) => {
-    return await Review.findAll({
+    const reviews = await Review.findAll({
         where: {
             bookId: req.params.id
         }
     });
+    res.json(reviews);
 }));
 
 router.post('/:id(\\d+)/reviews', handler(async (req, res) => {
-    return await Review.create(req.body);
+    const newReview = await Review.create(req.body);
+    res.json(newReview);
 }))
 
 router.get('/:id(\\d+)', handler(async (req, res) => {

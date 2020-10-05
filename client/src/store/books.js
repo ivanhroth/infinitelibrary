@@ -8,7 +8,7 @@ const setCurrentBook = book => ({ type: SET_CURRENT_BOOK, book })
 
 const setCurrentReviews = reviews => ({ type: SET_CURRENT_REVIEWS, reviews })
 
-const addCurrentReview = review => ({ tpye: ADD_CURRENT_REVIEW, review })
+const addCurrentReview = review => ({ type: ADD_CURRENT_REVIEW, review })
 
 const setRecentBooks = books => ({ type: SET_RECENT_BOOKS, books})
 
@@ -30,18 +30,33 @@ const retrieveReviews = id => {
     }
 }
 
-const postReview = (content, currentUser, bookId) => {
+const postReview = (content, currentEmail, bookId) => {
     return async dispatch => {
-        const review = {content, userId: currentUser.id, bookId};
-        const res = await fetch(`/api/books/${bookId}/reviews`, {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json"
-            },
-            body: review
-        });
-        if (res.ok){
-            dispatch(addCurrentReview(review));
+        let usersRes = { ok: false };
+        try {
+            usersRes = await fetch(`/api/users/`);
+        } catch (err){
+            console.error(err);
+        }
+        if(usersRes.ok){
+            const {users} = await usersRes.json();
+            const currentUser = users.filter(user => user.email === currentEmail)[0];
+            const review = {content, userId: currentUser.id, bookId};
+            let res = {ok: false};
+            try {
+                res = await fetch(`/api/books/${bookId}/reviews`, {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json"
+                    },
+                    body: JSON.stringify(review)
+                });
+            } catch (err) {
+                console.error(err);
+            }
+            if (res.ok){
+                dispatch(addCurrentReview(review));
+            }
         }
     }
 }

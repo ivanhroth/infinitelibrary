@@ -13,7 +13,7 @@ import ViewBook from './components/ViewBook';
 import { thunks } from './store/auth';
 import { useSelector, useDispatch } from 'react-redux';
 
-const PrivateRoute = ({ component: Component, ...rest }) => (
+export const PrivateRoute = ({ component: Component, ...rest }) => (
     <Route {...rest} render={(props) => (
       rest.needLogin === true
         ? <Redirect to='/login' />
@@ -25,8 +25,19 @@ const App = () => {
 
     const dispatch = useDispatch();
 
-    const needLogin = useSelector(state => !state.auth.token);
+    const token = useSelector(state => state.auth.token);
+    const needLogin = !token;
     const logOut = () => dispatch(thunks.logOut());
+
+    let currentEmail = null;
+    if (!needLogin) {
+      const payload = token.split('.')[1];
+      const decodedPayload = atob(payload);
+      console.log(decodedPayload);
+      const payloadObj = JSON.parse(decodedPayload);
+      currentEmail = payloadObj.data.email;
+      console.log(currentEmail)
+    }
 
     return (
     <BrowserRouter>
@@ -37,7 +48,7 @@ const App = () => {
         {needLogin ? <></> : <Nav.Item as="li"><NavLink to="/">Home</NavLink></Nav.Item>}
         {needLogin ? <></> : <Nav.Item as="li"><NavLink to="/books/add">Add a book</NavLink></Nav.Item>}
         {needLogin ? <Nav.Item as="li"><NavLink to="/login">Log in</NavLink></Nav.Item> : <Nav.Item as="li"><form><Button type="submit" onClick={logOut}>Log out</Button></form></Nav.Item>}
-        {needLogin ? <Nav.Item as="li"><NavLink to="/register">Register an account</NavLink></Nav.Item> : <></>}
+        {needLogin ? <Nav.Item as="li"><NavLink to="/register">Register an account</NavLink></Nav.Item> : <span>Logged in as <b>{currentEmail}</b></span>}
         </Nav>
         </Navbar.Collapse>
     </Navbar>

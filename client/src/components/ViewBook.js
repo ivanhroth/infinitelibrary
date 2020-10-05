@@ -20,22 +20,22 @@ const ViewBook = props => {
     if (!currentBook) return <h1>Book not found</h1>;
     else {
         return (
-        <Container>
-        <div>
-            <h1>{currentBook.title}</h1>
-            <h2>by {currentBook.authorFirstName} {currentBook.authorLastName}</h2>
-            <h2>published {currentBook.publicationYear}</h2>
-        </div>
-        <div>
-            {currentReviews.forEach(review => (
+            <Container>
                 <div>
-                    <h2>review by {review.userId}</h2>
-                    <p>{review.content}</p>
+                    <h1>{currentBook.title}</h1>
+                    <h2>by {currentBook.authorFirstName} {currentBook.authorLastName}</h2>
+                    <h2>published {currentBook.publicationYear}</h2>
                 </div>
-            ))}
-        </div>
-        {token ? <ReviewForm currentUserId={currentUserId} bookId={currentBookId} /> : <NavLink to="/users/login">Please log in to leave a review</NavLink>}
-        </Container>
+                {token ? <ReviewForm currentUserId={currentUserId} bookId={currentBookId} /> : <NavLink to="/users/login">Please log in to leave a review</NavLink>}
+                <div>
+                    {currentReviews.map(review => (
+                        <div>
+                            <h3>review by {review.userId}</h3>
+                            <p>{review.content}</p>
+                        </div>
+                    ))}
+                </div>
+            </Container>
         )
     }
 }
