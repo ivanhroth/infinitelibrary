@@ -20,7 +20,7 @@ module.exports = {
       publicationYear: {
         type: Sequelize.INTEGER
       },
-      googleId: {
+      coverImageUrl: {
         type: Sequelize.STRING
       },
       createdAt: {
