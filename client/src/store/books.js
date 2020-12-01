@@ -96,6 +96,21 @@ const postBook = book => {
     }
 }
 
+const getCoverImage = book => {
+    return async dispatch => {
+        const processedTitle = book.title.split(" ").join("+");
+        const processedAuthorLastName = book.authorLastName.split(" ").join("+");
+        const searchTerm = `intitle:"${processedTitle}"+inauthor:"${processedAuthorLastName}"`;
+        const searchURL = `https://www.googleapis.com/books/v1/volumes?q=${searchTerm}&key=${process.env.API_KEY}`;
+        const res = await fetch(searchURL);
+        if (res.ok){
+            const result = await res.json();
+            const imageURL = result.items[0].imageLinks.thumbnail;
+            return imageURL;
+        }
+    }
+}
+
 export const thunks = {
     retrieveBook,
     retrieveReviews,
