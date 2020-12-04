@@ -108,7 +108,12 @@ const setCoverImage = book => {
             const result = await res.json();
             const imageURL = result.items[0].imageLinks.thumbnail;
             //return imageURL;
-            // add cover image url to database item
+            await fetch(`/api/books/${book.id}`, {
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: book
+            })
         }
     }
 }
