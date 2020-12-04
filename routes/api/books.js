@@ -34,6 +34,12 @@ router.get('/:id(\\d+)', handler(async (req, res) => {
     res.json(book);
 }));
 
+router.put('/:id(\\d+)', handler(async (req, res) => {
+    const book = await Book.findByPj(req.params.id);
+    // update data
+    res.json(book)
+} ))
+
 router.post('/find', handler(async (req, res) => {
     return await Book.findAll({
         where: JSON.parse(req.body)
