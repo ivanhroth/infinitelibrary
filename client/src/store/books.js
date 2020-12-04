@@ -113,7 +113,8 @@ const setCoverImage = book => {
                     'Content-Type': 'application/json'
                 },
                 body: book
-            })
+            });
+            return null; // possibly better to re-retrieve the new book item?
         }
     }
 }
