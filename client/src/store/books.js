@@ -3,6 +3,7 @@ const SET_CURRENT_REVIEWS = 'SET_CURRENT_REVIEWS';
 const ADD_CURRENT_REVIEW = 'ADD_CURRENT_REVIEW';
 const SET_RECENT_BOOKS = 'SET_RECENT_BOOKS';
 const ADD_RECENT_BOOK = 'ADD_RECENT_BOOK';
+const GET_COVER_IMAGE = 'RETRIEVE_COVER_IMAGE'
 
 const setCurrentBook = book => ({ type: SET_CURRENT_BOOK, book })
 
@@ -96,7 +97,7 @@ const postBook = book => {
     }
 }
 
-const getCoverImage = book => {
+const setCoverImage = book => {
     return async dispatch => {
         const processedTitle = book.title.split(" ").join("+");
         const processedAuthorLastName = book.authorLastName.split(" ").join("+");
@@ -106,7 +107,8 @@ const getCoverImage = book => {
         if (res.ok){
             const result = await res.json();
             const imageURL = result.items[0].imageLinks.thumbnail;
-            return imageURL;
+            //return imageURL;
+            // add cover image url to database item
         }
     }
 }
@@ -117,6 +119,7 @@ export const thunks = {
     postReview,
     retrieveRecentBooks,
     postBook,
+    setCoverImage
 }
 
 const initialState = {
