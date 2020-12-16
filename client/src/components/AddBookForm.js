@@ -55,6 +55,7 @@ const AddBookForm = () => {
         }
         dispatch(postBook(newBook));
         setSubmitted(true);
+        dispatch(setCoverImage(newBook));
     }
 
     if (!submitted) return (
