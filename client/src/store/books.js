@@ -113,7 +113,7 @@ const setCoverImage = book => {
                 headers: {
                     'Content-Type': 'application/json'
                 },
-                body: book
+                body: {...book, coverImageUrl: imageURL }
             });
             return null; // possibly better to re-retrieve the new book item?
         }

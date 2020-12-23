@@ -23,6 +23,7 @@ const ViewBook = props => {
             <Container>
                 <div>
                     <h1>{currentBook.title}</h1>
+                    <img src={currentBook.coverImageUrl} />
                     <h2>by {currentBook.authorFirstName} {currentBook.authorLastName}</h2>
                     <h2>published {currentBook.publicationYear}</h2>
                 </div>

@@ -30,7 +30,7 @@ const AddBookForm = () => {
         return false;
     }
 
-    const postBook = thunks.postBook;
+    const { postBook, setCoverImage } = thunks;
 
     /* const postBook = async book => {
         const res = await fetch('/api/books', {
