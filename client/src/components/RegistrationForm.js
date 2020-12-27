@@ -23,8 +23,9 @@ const RegistrationForm = props => {
 
     const registerUser = async e => {
         e.preventDefault();
+        console.log(password);
         try {
-            const res = await fetch('http://localhost:8080/users', {
+            const res = await fetch('http://localhost:8080/api/users', {
                 method: 'POST',
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify({username, password, email})
