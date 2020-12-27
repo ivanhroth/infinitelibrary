@@ -35,7 +35,7 @@ router.get('/:id(\\d+)', handler(async (req, res) => {
 }));
 
 router.put('/:id(\\d+)', handler(async (req, res) => {
-    const book = await Book.findByPj(req.params.id);
+    const book = await Book.findByPk(req.params.id);
     book.set(req.body);
     res.json(book)
 } ))
