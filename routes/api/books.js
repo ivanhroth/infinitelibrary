@@ -1,5 +1,6 @@
 const express = require('express');
 const handler = require('express-async-handler');
+const fetch = require('node-fetch');
 const { Book, Review, User } = require('../../db/models');
 
 const bookAttributes = ['title', 'authorFirstName', 'authorLastName', 'publicationYear']
@@ -7,8 +8,40 @@ const bookAttributes = ['title', 'authorFirstName', 'authorLastName', 'publicati
 const router = express.Router();
 
 router.post('/', handler(async (req, res) => {
-    return await Book.create(req.body);
-}))
+    const book = req.body;
+    if (book.publicationYear == "") book.publicationYear = null;
+    const processedTitle = book.title.split(" ").join("+");
+    const processedAuthorLastName = book.authorLastName.split(" ").join("+");
+    const searchTerm = `intitle:"${processedTitle}"+inauthor:"${processedAuthorLastName}"`;
+    console.log(process.env.API_KEY);
+    //const searchURL = 'http://localhost:8080' //to prevent needless calls to the google api during testing of other steps in the process
+    const searchURL = `https://www.googleapis.com/books/v1/volumes?q=${searchTerm}&key=${process.env.API_KEY}`;
+    const resolution = await fetch(searchURL);
+    let imageURL = null;
+    if (resolution.ok){
+        const result = await resolution.json();
+        const volumeURL = result.items[0].selfLink;
+        const volumeRes = await fetch(volumeURL);
+        if (volumeRes.ok){
+            const volume = await volumeRes.json();
+            console.log(volume);
+            imageURL = volume.volumeInfo.imageLinks.thumbnail;
+            console.log(imageURL);
+        } else {
+            console.log(volumeRes);
+        }
+        await fetch(`/api/books/${book.id}`, {
+            method: 'PUT',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: {...book, coverImageUrl: imageURL }
+        });
+    } else {
+        console.log(resolution);
+    }
+    return await Book.create({...req.body, coverImageUrl: imageURL});
+}));
 
 router.get('/:id(\\d+)/reviews', handler(async (req, res) => {
     const reviews = await Review.findAll({
