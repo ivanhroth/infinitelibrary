@@ -14,7 +14,6 @@ const Homepage = () => {
 
    const recentBooksComponent = recentBooks.map(book => (
       <NavLink to={`/books/${book.id}`} key={book.id}>
-{/*          <b><i>{book.title}</i></b> by {book.authorLastName}, {book.authorFirstName} ({book.publicationYear})*/}
       {book.coverImageUrl ? <img src={book.coverImageUrl} /> : <span><b><i>{book.title}</i></b> by {book.authorLastName}, {book.authorFirstName} ({book.publicationYear})</span>}
       </NavLink>
    ))
