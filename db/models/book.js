@@ -5,7 +5,7 @@ module.exports = (sequelize, DataTypes) => {
     authorFirstName: DataTypes.STRING,
     authorLastName: DataTypes.STRING,
     publicationYear: DataTypes.INTEGER,
-    coverImageUrl: DataTypes.STRING,
+    coverImageUrl: DataTypes.STRING(1024),
   }, {});
   Book.associate = function(models) {
     Book.hasMany(models.Review, { foreignKey: "bookId" });

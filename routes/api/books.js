@@ -25,18 +25,11 @@ router.post('/', handler(async (req, res) => {
         if (volumeRes.ok){
             const volume = await volumeRes.json();
             console.log(volume);
-            imageURL = volume.volumeInfo.imageLinks.thumbnail;
+            if (volume.volumeInfo.imageLinks) imageURL = volume.volumeInfo.imageLinks.thumbnail;
             console.log(imageURL);
         } else {
             console.log(volumeRes);
         }
-        await fetch(`/api/books/${book.id}`, {
-            method: 'PUT',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: {...book, coverImageUrl: imageURL }
-        });
     } else {
         console.log(resolution);
     }

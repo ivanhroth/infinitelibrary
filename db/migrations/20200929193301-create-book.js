@@ -21,7 +21,7 @@ module.exports = {
         type: Sequelize.INTEGER
       },
       coverImageUrl: {
-        type: Sequelize.STRING
+        type: Sequelize.STRING(1024)
       },
       createdAt: {
         allowNull: false,
