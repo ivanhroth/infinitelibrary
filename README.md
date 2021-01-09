@@ -26,7 +26,7 @@ Users can add new books via a form which allows them to enter a title, author, a
 InfiniteLibrary uses an Express.js server on the frontend, with the React framework providing the interface. The frontend also interfaces with an external API to provide cover images automatically, via Google Books.
 
 ### Frontend Technologies Used:
-#### React
+#### React/Redux
 The frontend server is written in React.js with Redux, allowing for a clear and directed flow of information between nested components.
 
 ### Google Books API
