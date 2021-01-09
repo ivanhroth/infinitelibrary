@@ -27,3 +27,18 @@ InfiniteLibrary uses an Express.js server on the frontend, with the React framew
 
 ### Frontend Technologies Used:
 #### React
+The frontend server is written in React.js with Redux, allowing for a clear and directed flow of information between nested components.
+
+### Google Books API
+
+## Backend Overview
+The backend server, written in Flask, does no significant processing, and mainly performs read/write functions with respect to the PostgreSQL database which stores user information as well as details on individual feeds and collections.
+
+### Backend Technologies Used
+#### PostgreSQL
+
+![Database schema]()
+
+## Conclusion and Next Steps
+
+Thanks for reading! 📚
