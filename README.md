@@ -21,3 +21,9 @@ InfiniteLibrary allows users to add bibliographic listings for books, with cover
 <!-- ![Feed search and collection creation](feedsearch.png) -->
 
 Users can add new books via a form which allows them to enter a title, author, and optionally a date of publication for the new bibliographic record. The app then automatically retrieves a matching cover image (if one exists) and generates the record.
+
+## Frontend Overview
+InfiniteLibrary uses an Express.js server on the frontend, with the React framework providing the interface. The frontend also interfaces with an external API to provide cover images automatically, via Google Books.
+
+### Frontend Technologies Used:
+#### React
