@@ -3,7 +3,6 @@
 
 **Table of Contents**
 * [InfiniteLibrary at a Glance](#infinitelibrary-at-a-glance)
-* [Application Architecture & Technologies Used](#application-architecture)
 * [Frontend Overview](#frontend-overview)
 * [Backend Overview](#backend-overview)
 * [Conclusion & Next Steps](#conclusion-and-next-steps)
