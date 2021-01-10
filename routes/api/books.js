@@ -13,8 +13,6 @@ router.post('/', handler(async (req, res) => {
     const processedTitle = book.title.split(" ").join("+");
     const processedAuthorLastName = book.authorLastName.split(" ").join("+");
     const searchTerm = `intitle:"${processedTitle}"+inauthor:"${processedAuthorLastName}"`;
-    console.log(process.env.API_KEY);
-    //const searchURL = 'http://localhost:8080' //to prevent needless calls to the google api during testing of other steps in the process
     const searchURL = `https://www.googleapis.com/books/v1/volumes?q=${searchTerm}&key=${process.env.API_KEY}`;
     const resolution = await fetch(searchURL);
     let imageURL = null;

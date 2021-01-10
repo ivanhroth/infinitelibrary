@@ -27,9 +27,29 @@ InfiniteLibrary uses an Express.js server on the frontend, with the React framew
 
 ### Frontend Technologies Used:
 #### React/Redux
-The frontend server is written in React.js with Redux, allowing for a clear and directed flow of information between nested components.
+The frontend server is written in React.js with Redux, allowing for a clear and directed flow of information between nested components. The Redux framework also allows backend calls to be centralized in a single "store", simplifying the interactions between backend and frontend into a single ``switch`` statement.
 
 ### Google Books API
+Using a registered Google API key, InfiniteLibrary makes calls to the Google Books API when a new book record is created, using the Google Books search functionality to retrieve the closest match to the user-supplied data, and then retrieving the cover image from that Google Books entry if one is available. The following code on the backend server accomplishes that task (here ``book`` is a JSON object containing the user-entered book information):
+
+```
+    const processedTitle = book.title.split(" ").join("+");
+    const processedAuthorLastName = book.authorLastName.split(" ").join("+");
+    const searchTerm = `intitle:"${processedTitle}"+inauthor:"${processedAuthorLastName}"`;
+    const searchURL = `https://www.googleapis.com/books/v1/volumes?q=${searchTerm}&key=${process.env.API_KEY}`;
+    const resolution = await fetch(searchURL);
+    let imageURL = null;
+    if (resolution.ok){
+        const result = await resolution.json();
+        const volumeURL = result.items[0].selfLink;
+        const volumeRes = await fetch(volumeURL);
+        if (volumeRes.ok){
+            const volume = await volumeRes.json();
+            console.log(volume);
+            if (volume.volumeInfo.imageLinks) imageURL = volume.volumeInfo.imageLinks.thumbnail;
+            console.log(imageURL);
+        }
+```
 
 ## Backend Overview
 The backend server, written in Flask, does no significant processing, and mainly performs read/write functions with respect to the PostgreSQL database which stores user information as well as details on individual feeds and collections.
