@@ -17,7 +17,7 @@ InfiniteLibrary is a full-stack web app for listing and reviewing books, where u
 InfiniteLibrary allows users to add bibliographic listings for books, with cover art automatically supplied via the Google Books API, and to add reviews to books already listed.
 
 ##### Adding books
-<!-- ![Feed search and collection creation](feedsearch.png) -->
+![Adding a book by form](addbook.png)
 
 Users can add new books via a form which allows them to enter a title, author, and optionally a date of publication for the new bibliographic record. The app then automatically retrieves a matching cover image (if one exists) and generates the record.
 
