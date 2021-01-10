@@ -55,11 +55,11 @@ Using a registered Google API key, InfiniteLibrary makes calls to the Google Boo
         }
 ```
 
-#### PostgreSQL
-The backend is supported by a PostgreSQL database, which keeps track of user information as well as the data in bibliographic records. This database also stores the google URLs of book cover images, so that the API is not pinged further after the initial retrieval of the image.
-
-![Database schema]()
+#### PostgreSQL and Sequelize
+The backend is supported by a PostgreSQL database, which keeps track of user information as well as the data in bibliographic records. This backend database is managed via and Express.js server using Sequelize.js. This database also stores the google URLs of book cover images, so that the API is not pinged further after the initial retrieval of the image.
 
 ## Conclusion and Next Steps
+
+Moving forward, I am excited to improve search capabilities and
 
 Thanks for reading! 📚
