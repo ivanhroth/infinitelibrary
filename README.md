@@ -60,6 +60,6 @@ The backend is supported by a PostgreSQL database, which keeps track of user inf
 
 ## Conclusion and Next Steps
 
-Moving forward, I am excited to improve search capabilities and
+Moving forward, I am excited to improve search capabilities and expand the range of data that is retrieved from the Google Books API for each record, potentially allowing for more complete records on each book. I also plan to introduce star ratings in addition to textual reviews.
 
 Thanks for reading! 📚
