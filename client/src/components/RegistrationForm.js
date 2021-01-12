@@ -36,7 +36,7 @@ const RegistrationForm = props => {
             }
 
             const { token, user: { id } } = await res.json();
-            props.updateContext(token, id);
+            //props.updateContext(token, id);
         } catch (err) {
             console.log(err);
         }
