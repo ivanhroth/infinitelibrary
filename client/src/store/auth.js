@@ -34,7 +34,6 @@ const tryLogin = () => {
         dispatch(updateTokenValue(data.token));
         //dispatch(autoUpdateUser());
         const res = await fetch('/api/users/');
-        console.log(res);
         if (res.ok){
           const {users} = await res.json();
           //dispatch(autoUpdateUserValue(users));
