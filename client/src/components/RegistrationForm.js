@@ -1,13 +1,17 @@
-import React, { useState, useSelector } from 'react';
+import React, { useState } from 'react';
 import { Redirect } from 'react-router';
+import { actions, thunks } from '../store/auth';
 import { Container, Button, Form } from 'react-bootstrap';
+import { useDispatch, useSelector } from 'react-redux';
 
 const RegistrationForm = props => {
     const [username, setUsername] = useState('');
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
-    //const token = useSelector(state => state.auth.token);
-    const token = false;
+    const token = useSelector(state => state.auth.token);
+    //const token = false;
+
+    const dispatch = useDispatch();
 
     const updateUsername = e => {
         setUsername(e.target.value);
@@ -15,10 +19,12 @@ const RegistrationForm = props => {
 
     const updateEmail = e => {
         setEmail(e.target.value);
+        dispatch(actions.updateEmailValue(e.target.value));
     }
 
     const updatePassword = e => {
         setPassword(e.target.value);
+        dispatch(actions.updatePasswordValue(e.target.value));
     }
 
     const registerUser = async e => {
@@ -34,6 +40,8 @@ const RegistrationForm = props => {
             if (!res.ok) {
                 throw res;
             }
+
+            dispatch(thunks.tryLogin());
 
             const { token, user: { id } } = await res.json();
             //props.updateContext(token, id);
