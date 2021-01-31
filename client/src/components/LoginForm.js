@@ -30,7 +30,7 @@ const LoginForm = props => {
             <div>
             <input onChange={updatePasswordValue} type="password" placeholder="Password" required />
             </div>
-            <div>
+            <div class="login-box">
             <Button onClick={tryLogin}>Log in</Button>
             <a href='/register/' id="registration-link">Don't have an account? Click here to register</a>
             </div>
